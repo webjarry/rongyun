@@ -1,0 +1,23 @@
+html,
+body,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+}
+a,
+li {
+  list-style: none;
+  text-decoration: none;
+}
+button,
+input,
+textarea {
+  outline: none;
+  border: 0;
+}

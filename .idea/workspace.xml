@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78f01be5-fd3b-47b4-8cc8-baa2a693eec2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/assets/style/less/Components.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Toast.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/RongIMLib.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/style/css/Common.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/style/css/Common.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/style/css/Pages.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/style/css/Pages.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/style/less/Common.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/style/less/Common.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/style/less/Pages.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/style/less/Pages.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/rongcloud.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/rongcloud.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/im/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/im/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,8 +23,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Less File" />
         <option value="HTML File" />
+        <option value="XSLT Stylesheet" />
+        <option value="Less File" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -27,6 +37,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/style/js" />
     <property name="list.type.of.created.stylesheet" value="Less" />
@@ -38,12 +49,13 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/assets" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/assets/style/js" />
       <recent name="$PROJECT_DIR$/src/assets/images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/utils" />
+      <recent name="$PROJECT_DIR$/src/assets" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -70,7 +82,14 @@
       <updated>1584673919265</updated>
       <workItem from="1584673920860" duration="19709000" />
       <workItem from="1584702988036" duration="2660000" />
-      <workItem from="1584706295074" duration="103000" />
+      <workItem from="1584706295074" duration="157000" />
+      <workItem from="1584750835780" duration="6681000" />
+      <workItem from="1584926295251" duration="116000" />
+      <workItem from="1584946687792" duration="9929000" />
+      <workItem from="1585010093638" duration="1771000" />
+      <workItem from="1585014245047" duration="57000" />
+      <workItem from="1585123287410" duration="843000" />
+      <workItem from="1585131100580" duration="348000" />
     </task>
     <servers />
   </component>
@@ -82,7 +101,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

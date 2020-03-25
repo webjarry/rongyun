@@ -10,17 +10,19 @@
 <div class="container">
     <div class="main">
         <div class="wrapper">
-            <div class="live" id="live">
-
-            </div>
+            <div class="live" id="live"></div>
             <div class="message">
                 <div class="message-container">
                     <div class="message-header">
                         <span>聊天框</span>
                     </div>
-                    <div class="message-main">
+
+
+                    <div class="message-main" id="gd">
                         <div class="row message-content" id="message-li"></div>
                     </div>
+
+
                     <div class="message-footer">
                         <div class="content">
                             <textarea rows="10" id="message"></textarea>
@@ -28,7 +30,7 @@
                         <div class="footer-submit">
                             <div class="desc"><span>按Enter键发送，按Ctrl+Enter键换行</span></div>
                             <div class="submit">
-                                <button onclick="answerMessage()">接听通话</button>
+                                <button onclick="submitMessage(document.getElementById('message').value)">发送消息</button>
                             </div>
                         </div>
                     </div>
@@ -36,8 +38,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="prop">
         <div class="title">
             <h3>您有一个新的通话邀请</h3>
@@ -52,29 +52,72 @@
             </div>
         </div>
     </div>
+    <div class="textMenu" id="menu">
+        <div class="item" onclick="closeMessage()">
+            <span>清空聊天内容</span>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript" src="../../assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.ronghub.com/RongIMLib-2.5.5.min.js"></script>
+<!--<script type="text/javascript" src="../../utils/RongIMLib.js"></script>-->
 <script src="https://cdn.ronghub.com/RongCallLib-3.1.5.min.js"></script>
 <script src="https://cdn.ronghub.com/RongRTC-3.2.0.min.js"></script>
 <script type="text/javascript" src="../../lib/rongcloud.js"></script>
+<script type="text/javascript" src="../../components/Toast.js"></script>
 <script type="text/javascript">
     let rong = new RongCloud('lmxuhwagl5a3d'),
-        token = 'Yfb2RlByKO4mm/wiZEw9vaZM1JITiRXniSoxowdOvP1Ias76yALBk+XMLuFA2I6eyIJ3gOKEzrv84t1y7Hk7Sw==';
-
-    let msg = document.getElementById('message');
-
-    let dom = document.getElementById('message-li');
-
+        token = 'n1Da50a9scEftrUuqanZAKZM1JITiRXniSoxowdOvP1Ias76yALBk6LMi8bTcQ10xlyzneCoR2z84t1y7Hk7Sw==',
+        msgItem = document.getElementById('gd'), // 滚动容器
+        msg = document.getElementById('message'),  // 输入内容
+        menu = document.getElementById('menu'),
+        messages = {
+            list: [],   // 消息历史记录
+            dom: document.getElementById('message-li')   // 插入消息容器
+        };
     // 连接聊天
-    rong.connect(token).then(res => {
-        console.log('连接成功', res);
-    });
+    rong.connect(token).then(id => {
+        boxScroll(msgItem);
 
-    // 监听消息
-    rong.message((message) => {
-        addElementMessage('he', message.content.content)
+        // 监听消息
+        rong.message((message) => {
+            addElementMessage('he', message.content.content);
+            boxScroll(msgItem);
+        });
+
+        // 获取历史记录
+        rong.recording(20, '36').then((res) => {
+            res.forEach((item) => {
+                addElementMessage(id === item.senderUserId
+                    ? 'me'
+                    : 'he',
+                    item.content.content
+                );
+            });
+            messages.list = res;
+            boxScroll(msgItem);
+        }).catch(error => {
+            console.log('Error', error)
+        });
+
+        // 滚动到最顶部获取历史记录
+        // msgItem.onscroll = function (ev) {
+        //     if (msgItem.scrollTop > 0) return false;
+        //     // 获取历史记录
+        //     rong.recording(20, '36', messages.list[messages.list.length - 1].sentTime).then((res) => {
+        //         res.forEach((item) => {
+        //             addElementMessage(id === item.senderUserId
+        //                 ? 'me'
+        //                 : 'he',
+        //                 item.content.content
+        //             );
+        //         });
+        //         messages.list = res;
+        //     }).catch(error => {
+        //         console.log('Error', error)
+        //     });
+        // };
     });
 
     var config = {
@@ -113,9 +156,13 @@
 
     // 发送消息
     function submitMessage(value) {
+        if (value === '') return false;
+
         rong.submitMessage(value, '36').then(res => {
             addElementMessage('me', res.content.content);
             msg.value = '';
+
+            boxScroll(msgItem);
         }).catch(error => {
             console.log('消息发送失败!')
         })
@@ -133,7 +180,7 @@
         text.innerText = message;
         box.append(col);
         col.append(text);
-        dom.append(box);
+        messages.dom.append(box);
     }
 
     var videoWatcher = function(result) {
@@ -151,25 +198,47 @@
             // 音视频结束, 清空所有音视频 UI
         }
     };
+
     rongCallLib.videoWatch(videoWatcher);
 
     var commandWatcher = function(message) {
         var messageType = message.messageType;
         // 根据消息类型做对应处理
-        console.log('发送视频', messageType);
         switch (messageType) {
             case "InviteMessage":
-                $('.prop').show(300);
+                $('.prop').addClass('active');
                 break;
             case "SummaryMessage":
-                $('.prop').hide(300);
+                $('.prop').removeClass('active');
                 break;
             default:
                 break
         }
 
     };
+
     rongCallLib.commandWatch(commandWatcher);
+
+    function boxScroll(o){
+        o.scrollTop = o.scrollHeight;
+    }
+
+    // 自定义鼠标右键
+    msgItem.oncontextmenu = function (ev) {
+        ev.preventDefault();
+        menu.style.display = 'block';
+        menu.style.top = ev.clientY + 'px';
+        menu.style.left = ev.clientX + 'px';
+    };
+
+    msgItem.onclick = function (ev) {
+        menu.style.display = 'none';
+    };
+
+    function closeMessage() {
+        console.log('清空聊天记录!');
+        menu.style.display = 'none';
+    }
 </script>
 </body>
 </html>

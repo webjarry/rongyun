@@ -24,6 +24,7 @@
             width: 100%;
             height: 800px;
             position: relative;
+            overflow: hidden;
 
             .message-header {
               color: #333;
@@ -41,11 +42,19 @@
               font:14px Microsoft YaHei;
               font-weight:400;
               .message-content {
-                div .col {
-                  display: inline-block;
-                  padding: 8px 18px;
-                  border-radius: 5px;
-                  margin-bottom: 28px;
+                div {
+                  .col {
+                    display: inline-block;
+                    padding: 8px 18px;
+                    border-radius: 5px;
+                    margin-bottom: 28px;
+                  }
+
+                  &:last-child {
+                    .col {
+                      margin: 0;
+                    }
+                  }
                 }
                 .me {
                   text-align: right;
@@ -54,7 +63,6 @@
                     color: #FFF;
                   }
                 }
-
                 .he {
                   text-align: left;
                   .col {
@@ -118,13 +126,19 @@
     position: fixed;
     top: 30px;
     left: 50%;
-    display: none;
+    transform: translateY(-300px);
+    opacity: 0;
     width: 600px;
     margin-left: -300px;
     height: 120px;
     border-radius: 10px;
     background: #FFF;
     box-shadow:0px 5px 5px 0px rgba(207, 207, 207, 0.33);
+    transition: all 1s;
+    &.active {
+      transform: translateY(0px);
+      opacity: 1;
+    }
 
     .title {
       text-align: center;
@@ -154,6 +168,30 @@
           background: red;
           color: #FFF;
         }
+      }
+    }
+  }
+  .textMenu {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 160px;
+    display: none;
+    border-radius: 10px;
+    background-color: #efefef;
+    overflow: hidden;
+    box-shadow:0px 15px 20px 1px rgba(51,51,51,0.04);
+
+    .item {
+      color: #333;
+      padding: 5px 20px;
+      font-size: 14px;
+      cursor: default;
+
+      &:hover {
+        color: #FFF;
+        background-color: rgba(0, 0, 0, 0.2);
       }
     }
   }

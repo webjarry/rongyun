@@ -1,7 +1,10 @@
 class RongCloud {
     constructor(key, token) {
         this.app_key = key;
+        this.id = 0;
         RongIMLib.RongIMClient.init(this.app_key);
+        this.ImLib = RongIMLib;
+        this.ImClient = RongIMClient;
     }
 
     // 初始化
@@ -57,14 +60,14 @@ class RongCloud {
     }
 
     // 历史消息 (不能用  需要开通商业服务授权)
-    recording() {
-        return new Promise((resolve, reject) => {
-            let conversationType = RongIMLib.ConversationType.PRIVATE,
-                targetId = 'api_test_user_1',
-                timestrap = null,
-                count = 20;
+    recording(number, id, time = null) {
+        let conversationType = RongIMLib.ConversationType.PRIVATE,
+            targetId = id,
+            timestrap = time,
+            count = number;
 
-            RongIMLib.RongIMClient.getInstance().getHistoryMessages(conversationType, targetId, timestrap, count, {
+        return new Promise((resolve, reject) => {
+            this.ImClient.getInstance().getHistoryMessages(conversationType, targetId, timestrap, count, {
                 onSuccess: (list, hasMsg) => resolve(list, hasMsg),
                 onError: (error) => reject(error)
             });

@@ -38,8 +38,78 @@ textarea {
   height: 800px;
 }
 .container .main .wrapper > div.live {
+  position: relative;
+  overflow: hidden;
   background-image: url("../../images/live.png");
   background-size: 110%;
+}
+.container .main .wrapper > div.live div.me,
+.container .main .wrapper > div.live div.he {
+  display: none;
+}
+.container .main .wrapper > div.live div.me .video-content,
+.container .main .wrapper > div.live div.he .video-content {
+  height: 100%;
+}
+.container .main .wrapper > div.live div.me .video-content video,
+.container .main .wrapper > div.live div.he .video-content video {
+  width: 100%;
+  height: 100%;
+}
+.container .main .wrapper > div.live div.me .video-footer,
+.container .main .wrapper > div.live div.he .video-footer {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  padding: 0 30px;
+  height: 100px;
+}
+.container .main .wrapper > div.live div.me .video-footer ul,
+.container .main .wrapper > div.live div.he .video-footer ul {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  text-align: center;
+}
+.container .main .wrapper > div.live div.me .video-footer ul li .icon,
+.container .main .wrapper > div.live div.he .video-footer ul li .icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+}
+.container .main .wrapper > div.live div.me .video-footer ul li .icon img,
+.container .main .wrapper > div.live div.he .video-footer ul li .icon img {
+  width: 100%;
+}
+.container .main .wrapper > div.live div.me .video-footer ul li .name,
+.container .main .wrapper > div.live div.he .video-footer ul li .name {
+  padding-top: 10px;
+  font-size: 12px;
+  color: #FFF;
+}
+.container .main .wrapper > div.live .he {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+}
+.container .main .wrapper > div.live .me {
+  z-index: 99;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 180px;
+  height: 180px;
+  border-radius: 10px;
+  background-color: #333333;
+  overflow: hidden;
 }
 .container .main .wrapper > div.message .message-container {
   width: 100%;
@@ -129,18 +199,16 @@ textarea {
   top: 30px;
   left: 50%;
   transform: translateY(-300px);
-  opacity: 0;
   width: 600px;
   margin-left: -300px;
   height: 120px;
   border-radius: 10px;
   background: #FFF;
   box-shadow: 0px 5px 5px 0px rgba(207, 207, 207, 0.33);
-  transition: all 1s;
+  transition: all 0.5s;
 }
 .container .prop.active {
   transform: translateY(0px);
-  opacity: 1;
 }
 .container .prop .title {
   text-align: center;

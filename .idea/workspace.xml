@@ -2,19 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78f01be5-fd3b-47b4-8cc8-baa2a693eec2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/style/less/Components.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Toast.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/RongIMLib.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/big.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/jl.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/message.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/mkf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/mover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/sxt.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/js/plugin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/style/css/Common.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/style/css/Common.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/style/css/Pages.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/style/css/Pages.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/style/less/Common.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/style/less/Common.less" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/style/less/Pages.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/style/less/Pages.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/rongcloud.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/rongcloud.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/im/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/im/index.html" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,11 +35,17 @@
   </component>
   <component name="ProjectId" id="1ZNK4ONMEZTiBoVCGTkymtRnucm" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/style/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/images" />
     <property name="list.type.of.created.stylesheet" value="Less" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -49,26 +55,14 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/assets/style/js" />
-      <recent name="$PROJECT_DIR$/src/assets/images" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/utils" />
       <recent name="$PROJECT_DIR$/src/assets" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/assets/images" />
+      <recent name="$PROJECT_DIR$/src/assets/style/js" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -90,6 +84,11 @@
       <workItem from="1585014245047" duration="57000" />
       <workItem from="1585123287410" duration="843000" />
       <workItem from="1585131100580" duration="348000" />
+      <workItem from="1585135517855" duration="798000" />
+      <workItem from="1585184478591" duration="504000" />
+      <workItem from="1585185309237" duration="1886000" />
+      <workItem from="1585189184222" duration="6141000" />
+      <workItem from="1585203797842" duration="66000" />
     </task>
     <servers />
   </component>

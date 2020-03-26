@@ -10,18 +10,68 @@
 <div class="container">
     <div class="main">
         <div class="wrapper">
-            <div class="live" id="live"></div>
-            <div class="message">
+            <div class="live" id="live">
+                <div class="me" id="me">
+                    <div class="video-content" id="videoMeBox"></div>
+                    <div class="video-footer"></div>
+                </div>
+                <div class="he" id="he">
+                    <div class="video-content" id="videoHeBox"></div>
+                    <div class="video-footer">
+                        <ul>
+                            <li>
+                                <div class="icon">
+                                    <img src="../../assets/images/jl.png" alt="" />
+                                </div>
+                                <div class="name">
+                                    <span>查看简历</span>
+                                </div>
+                            </li>
+                            <li onclick="videoToAudio()">
+                                <div class="icon">
+                                    <img src="../../assets/images/mkf.png" alt="" />
+                                </div>
+                                <div class="name">
+                                    <span>打开麦克风</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon" onclick="overMessage()">
+                                    <img src="../../assets/images/mover.png" alt="" />
+                                </div>
+                                <div class="name">
+                                    <span>挂断</span>
+                                </div>
+                            </li>
+                            <li onclick="audioToVideo()">
+                                <div class="icon">
+                                    <img src="../../assets/images/sxt.png" alt="" />
+                                </div>
+                                <div class="name">
+                                    <span>打开摄像头</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon">
+                                    <img src="../../assets/images/message.png" alt="" />
+                                </div>
+                                <div class="name">
+                                    <span>聊天信息</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="message" id="messages">
                 <div class="message-container">
                     <div class="message-header">
                         <span>聊天框</span>
                     </div>
 
-
                     <div class="message-main" id="gd">
                         <div class="row message-content" id="message-li"></div>
                     </div>
-
 
                     <div class="message-footer">
                         <div class="content">
@@ -64,21 +114,25 @@
 <!--<script type="text/javascript" src="../../utils/RongIMLib.js"></script>-->
 <script src="https://cdn.ronghub.com/RongCallLib-3.1.5.min.js"></script>
 <script src="https://cdn.ronghub.com/RongRTC-3.2.0.min.js"></script>
-<script type="text/javascript" src="../../lib/rongcloud.js"></script>
+<script type="text/javascript" src="../../lib/rongMessage.js"></script>
 <script type="text/javascript" src="../../components/Toast.js"></script>
+<script type="text/javascript" src="../../assets/js/plugin.js"></script>
 <script type="text/javascript">
-    let rong = new RongCloud('lmxuhwagl5a3d'),
-        token = 'n1Da50a9scEftrUuqanZAKZM1JITiRXniSoxowdOvP1Ias76yALBk6LMi8bTcQ10xlyzneCoR2z84t1y7Hk7Sw==',
+    let rong = new RongMessage('lmxuhwagl5a3d'),
+        token = 'YR0JgDmMJgAKwwDjbpAmhJLaBM4pekKk8TqHULh+qqy6pWfpww5weS4mh2pX6dpAT+uqTlcDVfmN/qR1yPBRBA==',
         msgItem = document.getElementById('gd'), // 滚动容器
         msg = document.getElementById('message'),  // 输入内容
         menu = document.getElementById('menu'),
         messages = {
             list: [],   // 消息历史记录
             dom: document.getElementById('message-li')   // 插入消息容器
-        };
+        },
+        user_id = 0;
     // 连接聊天
     rong.connect(token).then(id => {
         boxScroll(msgItem);
+
+        user_id = id;
 
         // 监听消息
         rong.message((message) => {
@@ -101,23 +155,8 @@
             console.log('Error', error)
         });
 
-        // 滚动到最顶部获取历史记录
-        // msgItem.onscroll = function (ev) {
-        //     if (msgItem.scrollTop > 0) return false;
-        //     // 获取历史记录
-        //     rong.recording(20, '36', messages.list[messages.list.length - 1].sentTime).then((res) => {
-        //         res.forEach((item) => {
-        //             addElementMessage(id === item.senderUserId
-        //                 ? 'me'
-        //                 : 'he',
-        //                 item.content.content
-        //             );
-        //         });
-        //         messages.list = res;
-        //     }).catch(error => {
-        //         console.log('Error', error)
-        //     });
-        // };
+
+
     });
 
     var config = {
@@ -144,14 +183,57 @@
         }
     });
 
+    function hideVideoEl() {
+        $('#me').hide();
+        $('#he').hide();
+    }
+
+    function showVideoEl() {
+        $('#me').show();
+        $('#he').show();
+    }
+
+    // 视频转音频
+    function videoToAudio() {
+        rongCallLib.videoToAudio();
+        $('#me').hide()
+    }
+ 　
+    // 音频转
+    function audioToVideo() {
+        rongCallLib.audioToVideo();
+        $('#me').show()
+    }
+    
+    //静音
+    function mute() {
+        rongCallLib.mute();
+    }
+
     // 接听通话
     function answerMessage() {
+        $('.prop').removeClass('active');
         rong.answerCall()
     }
 
     // 拒绝通话
     function refuseMessage() {
-        rong.refuseCall()
+        $('.prop').removeClass('active');
+        rong.refuseCall();
+    }
+
+    // 结束童话
+    function overMessage(id) {
+        var targetId = '36';
+        var params = {
+            conversationType: RongIMLib.ConversationType.PRIVATE,
+            targetId: targetId
+        };
+        rongCallLib.hungup(params, function(error){
+            if (error) {
+                console.error('挂断通话失败', error);
+            }
+        });
     }
 
     // 发送消息
@@ -185,17 +267,23 @@
 
     var videoWatcher = function(result) {
         var type = result.type;
-        var boxEl = document.getElementById('live');
+        var boxEl = document.getElementById('live'),
+            me = document.getElementById('videoMeBox'),
+            he = document.getElementById('videoHeBox');
+
+        console.log(result);
+
         if (type === 'added') {
             // 添加音视频节点
             let video = result.data;
-            boxEl.appendChild(video);
+            // video.className = user_id === result.userId ? 'me' : 'he';
+            user_id === result.userId ? me.appendChild(video) : he.appendChild(video);
+            showVideoEl()
         } else if (type === 'removed') {
-            // 删除对应音视频节点
-            let video = result.data;
-            boxEl.removeChild(video);
+            hideVideoEl()
         } else if (type == 'leave') {
             // 音视频结束, 清空所有音视频 UI
+            hideVideoEl()
         }
     };
 
@@ -234,6 +322,22 @@
     msgItem.onclick = function (ev) {
         menu.style.display = 'none';
     };
+
+
+    // 双击全屏聊天
+    let live = document.getElementById('live'),
+        message = document.getElementById('messages');
+
+    live.ondblclick = function () {
+        if (live.style.width === '1200px') {
+            live.style.width = '600px';
+            message.style.display = 'block';
+        } else {
+            message.style.display = 'none';
+            live.style.width = '1200px';
+        }
+    };
+
 
     function closeMessage() {
         console.log('清空聊天记录!');

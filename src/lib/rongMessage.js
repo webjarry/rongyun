@@ -1,4 +1,4 @@
-class RongCloud {
+class RongMessage {
     constructor(key, token) {
         this.app_key = key;
         this.id = 0;
